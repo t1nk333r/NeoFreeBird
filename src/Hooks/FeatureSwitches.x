@@ -555,9 +555,11 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
     return YES;
 }
 
-// Video downloads are likewise enabled outright for every account.
+// X's native video download only completes for a genuinely premium account;
+// forced on for everyone, it surfaces a Download item that fails with "Could
+// not download file". Everyone else gets NFB's own Download media item.
 - (BOOL)isVideoCacheEnabled {
-    return YES;
+    return AccountIsGenuinelyPremium();
 }
 
 %end
